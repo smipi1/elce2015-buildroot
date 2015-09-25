@@ -1,0 +1,4 @@
+config BR2_PACKAGE_HOST_TRIVIA
+	bool "host trivia"
+	help
+	  ELCE2015 Linux in a light bulb trivia

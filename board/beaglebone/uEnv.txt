@@ -1,3 +1,6 @@
 bootpart=0:1
 bootdir=
+mmcroot=/dev/ram0
+mmcrootfstype=initramfs
+optargs=ip=192.168.1.2
 uenvcmd=run loadimage;run loadramdisk;run findfdt;run loadfdt;run ramboot

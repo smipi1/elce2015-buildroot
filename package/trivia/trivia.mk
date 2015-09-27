@@ -10,6 +10,8 @@ TRIVIA_LICENSE = MIT
 TRIVIA_LICENSE_FILES = LICENSE
 TRIVIA_BUILDDIR = $(TRIVIA_DIR)/$(TRIVIA_SUBDIR)
 TRIVIA_EXT_SRCDIR = $(TOPDIR)/../demo/onion
+#TRIVIA_TOOLCHAIN_FILE=$(TOPDIR)/package/trivia/toolchainfile.cmake
+TRIVIA_TOOLCHAIN_FILE=$(HOST_DIR)/usr/share/buildroot/toolchainfile.cmake
 
 define TRIVIA_EXTRACT_CMDS
 endef
@@ -23,7 +25,7 @@ define TRIVIA_CONFIGURE_CMDS
 	rm -f CMakeCache.txt && \
 	PATH=$(BR_PATH) \
 	$(TRIVIA_CONF_ENV) $(HOST_DIR)/usr/bin/cmake $(TRIVIA_EXT_SRCDIR) \
-		-DCMAKE_TOOLCHAIN_FILE="$(HOST_DIR)/usr/share/buildroot/toolchainfile.cmake" \
+		-DCMAKE_TOOLCHAIN_FILE="$(TRIVIA_TOOLCHAIN_FILE)" \
 		-DCMAKE_BUILD_TYPE=$(if $(BR2_ENABLE_DEBUG),Debug,Release) \
 		-DCMAKE_INSTALL_PREFIX="/usr" \
 		-DCMAKE_COLOR_MAKEFILE=OFF \

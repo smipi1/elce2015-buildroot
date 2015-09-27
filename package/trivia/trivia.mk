@@ -7,7 +7,6 @@
 TRIVIA_VERSION = master
 TRIVIA_SITE = $(call github,smipi1,onion,$(TRIVIA_VERSION))
 TRIVIA_LICENSE = MIT
-TRIVIA_DEPENDENCIES = host-trivia
 TRIVIA_LICENSE_FILES = LICENSE
 
 define TRIVIA_INSTALL_TARGET_CMDS
@@ -16,4 +15,3 @@ define TRIVIA_INSTALL_TARGET_CMDS
 endef
 
 $(eval $(cmake-package))
-$(eval $(host-cmake-package))

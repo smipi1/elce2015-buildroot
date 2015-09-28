@@ -1,0 +1,25 @@
+From 37acdc63a7afa616b4114ec888c6e7fb27ee50d7 Mon Sep 17 00:00:00 2001
+From: Pieter Smith <pieter@boesman.nl>
+Date: Mon, 28 Sep 2015 11:52:45 +0200
+Subject: [PATCH] bone common: fixes ocp tag
+
+---
+ arch/arm/boot/dts/am335x-bone-common.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm/boot/dts/am335x-bone-common.dtsi b/arch/arm/boot/dts/am335x-bone-common.dtsi
+index a0efb06..af7d180 100644
+--- a/arch/arm/boot/dts/am335x-bone-common.dtsi
++++ b/arch/arm/boot/dts/am335x-bone-common.dtsi
+@@ -130,7 +130,7 @@
+ 		};
+ 	};
+ 
+-	ocp {
++	ocp: ocp {
+ 		uart0: serial@44e09000 {
+ 			pinctrl-names = "default";
+ 			pinctrl-0 = <&uart0_pins>;
+-- 
+2.1.4
+

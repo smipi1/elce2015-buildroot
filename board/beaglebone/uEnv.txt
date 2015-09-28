@@ -2,5 +2,10 @@ bootpart=0:1
 bootdir=
 mmcroot=/dev/ram0
 mmcrootfstype=initramfs
-optargs=ip=192.168.1.2
-uenvcmd=run loadimage;run loadramdisk;run findfdt;run loadfdt;run ramboot
+ipaddr=192.168.1.2
+netmask=255.255.255.0
+autoload=no
+show_ip_config=echo IP address: ${ipaddr}; echo Netmask: ${netmask}; echo Gateway: ${gatewayip}
+get_ip_address=if dhcp; then echo Leased IP address; else echo DHCP lease failed; fi; run show_ip_config; setenv optargs ip=${ipaddr}::${gatewayip}:${netmask}
+uenvcmd=run get_ip_address;run loadimage;run loadramdisk;run findfdt;run loadfdt;run ramboot
+

@@ -386,12 +386,24 @@ endif # BR_BUILDING
 
 $(eval $(kconfig-package))
 
+define keep_kernel_images
+	mkdir -p $(BINARIES_DIR)/keep/$(1)
+	cp -v $(@D)/{vmlinux,arch/arm/boot/*Image} $(BINARIES_DIR)/keep/$(1)
+endef
+
 # Support for rebuilding the kernel after the cpio archive has
 # been generated in $(BINARIES_DIR)/rootfs.cpio.
 $(LINUX_DIR)/.stamp_initramfs_rebuilt: $(LINUX_DIR)/.stamp_target_installed $(LINUX_DIR)/.stamp_images_installed $(BINARIES_DIR)/rootfs.cpio
+	@$(call MESSAGE,"Rebuilding kernel without initramfs")
+	# Build the kernel without initramfs source
+	$(LINUX_MAKE_ENV) $(MAKE) $(LINUX_MAKE_FLAGS) CONFIG_INITRAMFS_SOURCE="" -C $(@D) $(LINUX_TARGET_NAME)
+	$(call keep_kernel_images,raw)
+
 	@$(call MESSAGE,"Rebuilding kernel with initramfs")
 	# Build the kernel.
 	$(LINUX_MAKE_ENV) $(MAKE) $(LINUX_MAKE_FLAGS) -C $(@D) $(LINUX_TARGET_NAME)
+	$(call keep_kernel_images,+initramfs)
+
 	$(LINUX_APPEND_DTB)
 	# Copy the kernel image to its final destination
 	cp $(LINUX_IMAGE_PATH) $(BINARIES_DIR)

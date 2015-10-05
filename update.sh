@@ -25,7 +25,7 @@ copyImagesTo() {
 	cp -v ${IMG_DIR}/MLO ${1} &&
 	cp -v ${IMG_DIR}/u-boot.img ${1} &&
 	cp -v ${IMG_DIR}/am335x-boneblack.dtb ${1} &&
-	cp -v ${IMG_DIR}/zImage ${1} &&
+	cp -v ${IMG_DIR}/*Image ${1} &&
 	cp -v ${IMG_DIR}/uEnv.txt ${1} &&
 	return 0 ||
 	return 1

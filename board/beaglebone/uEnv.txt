@@ -6,6 +6,6 @@ ipaddr=192.168.1.2
 netmask=255.255.255.0
 autoload=no
 show_ip_config=echo IP address: ${ipaddr}; echo Netmask: ${netmask}; echo Gateway: ${gatewayip}
-get_ip_address=if dhcp; then echo Leased IP address; else echo DHCP lease failed; fi; run show_ip_config; setenv optargs ip=${ipaddr}::${gatewayip}:${netmask} rdinit=/usr/bin/trivia
+get_ip_address=if dhcp; then echo Leased IP address; else echo DHCP lease failed; fi; run show_ip_config; setenv optargs ip=${ipaddr}::${gatewayip}:${netmask} rdinit=/bin/sh
 uenvcmd=run get_ip_address;run loadimage;run loadramdisk;run findfdt;run loadfdt;run ramboot
 
